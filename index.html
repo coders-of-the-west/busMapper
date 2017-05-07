@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Bus Routes</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta charset="UTF-8">
+		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+		<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+  </head>
+  <body>
+		<nav class="navbar navbar-fixed-top navbar-inverse">
+		  <div class="container">
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" href="#">District Bus Routes</a>
+		    </div>
+		    <div id="main-menu" class="collapse navbar-collapse">
+		      <ul class="nav navbar-nav">
+						<li>
+							<a id="choose-toggle" href="#modal-choose" data-toggle="modal">Choose School</a>
+						</li>
+		        <li><a href="#" id='showSchools'>Show Schools</a></li>
+		        <li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">School Websites <span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		          </ul>
+		        </li>
+						<li>
+							<p id="routeNumber" class="navbar-text"></p>
+						</li>
+						<li>
+							<a id="alert-toggle" href="#modal-alert" data-toggle="modal"><i class="fa fa-warning"></i> Alerts</a>
+						</li>
+		      </ul>
+					<div class="input-group">
+						<button href="#" class="btn btn-default pull-right" type="button" id="btn-search-geo"><i class="fa fa-location-arrow"></i> Use My Location</button></li>
+					</div>
+
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+		<div class="container-fluid">
+			<div class="row">
+				<div id="map">Loading Map...</div>
+			</div>
+		</div>
+		<footer>
+			<nav class="navbar navbar-inverse navbar-fixed-bottom">
+				<div class="container">
+					<div id="footer-nav" class="">
+						<!--><form class="form-inline"></!-->
+							<div class="row">
+  							<div class="col-md-6">
+									<form id="bus-number-form" action="#">
+	    							<div class="input-group col-sm-12">
+	      							<input type="text" class="form-control" placeholder="Enter Bus Number" title="Leave empty for all routes." id="field-bus-route" value="">
+	      							<span class="input-group-btn">
+	        							<button class="btn btn-default" type="submit" id="btn-get-route"><i class="fa fa-search"></i></button>
+	      							</span>
+	    							</div><!-- /input-group -->
+									</form>
+  							</div><!-- /.col-lg-6 -->
+								<div class="col-md-6">
+									<form id="bus-number-form" action="#">
+	    							<div class="input-group col-sm-12">
+	      							<input type="text" class="form-control" placeholder="Search by Your Address" title="Find the stop nearest an address" id="address-field" value="">
+	      							<span class="input-group-btn">
+	        							<button class="btn btn-default" type="submit" id="btn-search-address"><i class="fa fa-search"></i></button>
+	      							</span>
+	    							</div><!-- /input-group -->
+									</form>
+  							</div>
+							</div><!-- /.row -->
+						<!--></form></!-->
+					</div>
+				</div>
+			</nav>
+		</footer>
+		<div id="modal-alert" class="modal fade" tabindex="-1" role="dialog">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title"><i class="fa fa-warning"></i> Alerts</h4>
+		      </div>
+		      <div class="modal-body">
+		        <p>Nothing reported today.</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+		      </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+		<div id="modal-choose" class="modal fade" tabindex="-2" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title"><i class="fa fa-institution"></i> Choose School</h4>
+					</div>
+					<div class="modal-body">
+						<div id="school-choices" class="btn-group-vertical btn-group-lg" role="group">
+
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+		<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+		<script src="lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgcDCaAFlsUJRjPjmUzfnetbIELmoUzwA"></script>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script src="js/busroutes.js"></script>
+		<script type="text/javascript">
+			google.charts.load('upcoming', {'packages': ['map']});
+			google.charts.setOnLoadCallback(busbarn.init);
+		</script>
+
+  </body>
