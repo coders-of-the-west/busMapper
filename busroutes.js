@@ -1,7 +1,7 @@
 //Spreadsheet URL goes here (This var called on lines)
-var sheetURL = 'Spreadsheet URL Here';
+var sheetURL = 'https://docs.google.com/spreadsheets/d/1AKvzOnhzNkefzeHW--kwpHB5B8rbGYu9cOsT-w1Lx28/gviz/';
 //Zipcode for geolocation
-var geoPostalCode = 'Zipcode Here';
+var geoPostalCode = '82801';
 //Session variables & options
 var user = {
   location: {
