@@ -193,6 +193,7 @@ function Busbarn() {
       var li = $('<li>');
       var a = $('<a>');
       a.attr('href', link);
+      a.attr('target', '_blank');
       a.text(schoolName);
       $('.dropdown-menu').prepend(li);
       li.append(a);
