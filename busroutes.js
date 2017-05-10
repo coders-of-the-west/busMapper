@@ -526,9 +526,9 @@ function Busbarn() {
   });
 
   $('#btn-search-geo').on("click", function(event) {
-    //event.preventDefault();
-    //helper.getUserLocation(setUserLocation);
-    alert("Sorry for the inconvenience, but location tracking is currently unavailable. Geolocation requires a more secure connection");
+    event.preventDefault();
+    helper.getUserLocation(setUserLocation);
+    //alert("Sorry for the inconvenience, but location tracking is currently unavailable. Geolocation requires a more secure connection");
   });
 
   function setUserLocation(position) {
